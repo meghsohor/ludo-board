@@ -1,0 +1,413 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background: #f3f3f3;
+}
+
+.ludo-board {
+    display: -ms-grid;
+    display: grid;
+    width: 97vmin;
+    height: 97vmin;
+    border: 1px solid #000;
+    -ms-grid-rows: (1fr)[15];
+    -ms-grid-columns: (1fr)[15];
+        grid-template: repeat(15, 1fr)/repeat(15, 1fr);
+    -webkit-box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 50px -5px rgba(0, 0, 0, 0.5);
+}
+
+.ludo-cell {
+    background-color: #FFF;
+    border: 0.5px solid #000;
+}
+
+.green-player-entry {
+    background: #70dc39;
+}
+.red-player-entry {
+    background: #E01818;
+}
+.yellow-player-entry {
+    background: #FBD101;
+}
+.blue-player-entry {
+    background: #0DA9D9;
+}
+
+/*----------------- Player House styles ---------------------*/
+.ludo-cell.player-house {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.ludo-cell.player-house .player-house-inner-rect {
+    width: 65%;
+    height: 65%;
+    position: relative;
+}
+.ludo-cell.player-house .player-house-inner-rect:before {
+    content: '';
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15%;
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 15px -5px rgb(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 15px -5px rgb(0, 0, 0, 0.5);
+}
+.ludo-cell.player-house .player-house-inner-rect .player-house-inner-circle {
+    position: absolute;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    z-index: 2;
+    border: 1px solid;
+}
+.ludo-cell.player-house .player-house-inner-rect .player-house-inner-circle:nth-child(1) {
+    top: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.ludo-cell.player-house .player-house-inner-rect .player-house-inner-circle:nth-child(2) {
+    top: 0;
+    left: 5%;
+    bottom: 0;
+    margin: auto;
+}
+.ludo-cell.player-house .player-house-inner-rect .player-house-inner-circle:nth-child(3) {
+    top: 0;
+    right: 5%;
+    bottom: 0;
+    margin: auto;
+}
+.ludo-cell.player-house .player-house-inner-rect .player-house-inner-circle:nth-child(4) {
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+/* 
+*   Red Player 
+*/
+
+.ludo-cell.player-house.player-house-red {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1 / span 6;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 6;
+    grid-row: 1 / span 6;
+    background: #E01818;
+    background: -webkit-gradient(linear, left top, left bottom, from(#E01818), to(#A30907));
+    background: -o-linear-gradient(top, #E01818 0%, #A30907 100%);
+    background: linear-gradient(180deg, #E01818 0%, #A30907 100%);
+}
+.ludo-cell.player-house.player-house-red .player-house-inner-rect .player-house-inner-circle {
+    background: #E01818;
+    border-color: #900200;
+}
+
+/* 
+*   Green Player 
+*/
+
+.ludo-cell.player-house.player-house-green {
+    -ms-grid-column: 10;
+    -ms-grid-column-span: 6;
+    grid-column: 10 / span 6;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 6;
+    grid-row: 1 / span 6;
+    background: #4CAF50;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9DD830), to(#09A659));
+    background: -o-linear-gradient(top, #9DD830 0%, #09A659 100%);
+    background: linear-gradient(180deg, #9DD830 0%, #09A659 100%);
+}
+.ludo-cell.player-house.player-house-green .player-house-inner-rect .player-house-inner-circle {
+    background: #4CAF50;
+    border-color: #00672b;
+}
+
+/* 
+*   Yellow Player 
+*/
+
+.ludo-cell.player-house.player-house-yellow {
+    -ms-grid-column: 10;
+    -ms-grid-column-span: 6;
+    grid-column: 10 / span 6;
+    -ms-grid-row: 10;
+    -ms-grid-row-span: 6;
+    grid-row: 10 / span 6;
+    background: #ffdf00;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FBD101), to(#EBA40E));
+    background: -o-linear-gradient(top, #FBD101 0%, #EBA40E 100%);
+    background: linear-gradient(180deg, #FBD101 0%, #EBA40E 100%);
+}
+.ludo-cell.player-house.player-house-yellow .player-house-inner-rect .player-house-inner-circle {
+    background: #ffdf00;
+    border-color: #e3a709;
+}
+
+/* 
+*   Blue Player 
+*/
+
+.ludo-cell.player-house.player-house-blue {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1 / span 6;
+    -ms-grid-row: 10;
+    -ms-grid-row-span: 6;
+    grid-row: 10 / span 6;
+    background: #00a1de;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0DA9D9), to(#0385B6));
+    background: -o-linear-gradient(top, #0DA9D9 0%, #0385B6 100%);
+    background: linear-gradient(180deg, #0DA9D9 0%, #0385B6 100%);
+}
+.ludo-cell.player-house.player-house-blue .player-house-inner-rect .player-house-inner-circle {
+    background: #00a1de;
+    border-color: #00739c;
+}
+
+/*----------------- Player final path styles ---------------------*/
+.player-final-path {
+    display: -ms-grid;
+    display: grid;
+}
+
+/* 
+*   Green Player 
+*/
+.player-final-path.green-player {
+    -ms-grid-column: 8;
+    grid-column: 8;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 6;
+    grid-row: 1 / span 6;
+    -ms-grid-rows: (1fr)[6];
+    -ms-grid-columns: 1fr;
+        grid-template: repeat(6, 1fr)/1fr;
+}
+.player-final-path.green-player .ludo-cell {
+    background: #70dc39;
+}
+.player-final-path.green-player .ludo-cell:first-child {
+    background-color: #FFF;
+    position: relative;
+}
+.player-final-path.green-player .ludo-cell:first-child:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 35px solid #70dc39;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+/* 
+*   Yellow Player 
+*/
+.player-final-path.yellow-player {
+    -ms-grid-column: 10;
+    -ms-grid-column-span: 6;
+    grid-column: 10 / span 6;
+    -ms-grid-row: 8;
+    grid-row: 8;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: (1fr)[6];
+        grid-template: 1fr/repeat(6, 1fr);
+}
+.player-final-path.yellow-player .ludo-cell {
+    background: #FBD101;
+}
+.player-final-path.yellow-player .ludo-cell:last-child {
+    background-color: #FFF;
+    position: relative;
+}
+.player-final-path.yellow-player .ludo-cell:last-child:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 35px solid #FBD101;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+/* 
+*   Red Player 
+*/
+.player-final-path.red-player {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1 / span 6;
+    -ms-grid-row: 8;
+    grid-row: 8;
+    -ms-grid-rows: 1fr;
+    -ms-grid-columns: (1fr)[6];
+        grid-template: 1fr/repeat(6, 1fr);
+}
+.player-final-path.red-player .ludo-cell {
+    background: #E01818;
+}
+.player-final-path.red-player .ludo-cell:first-child {
+    background-color: #FFF;
+    position: relative;
+}
+.player-final-path.red-player .ludo-cell:first-child:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 35px solid #E01818;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+/* 
+*   Blue Player 
+*/
+.player-final-path.blue-player {
+    -ms-grid-column: 8;
+    grid-column: 8;
+    -ms-grid-row: 10;
+    -ms-grid-row-span: 6;
+    grid-row: 10 / span 6;
+    -ms-grid-rows: (1fr)[6];
+    -ms-grid-columns: 1fr;
+        grid-template: repeat(6, 1fr)/1fr;
+}
+.player-final-path.blue-player .ludo-cell {
+    background: #0DA9D9;
+}
+.player-final-path.blue-player .ludo-cell:last-child {
+    background-color: #FFF;
+    position: relative;
+}
+.player-final-path.blue-player .ludo-cell:last-child:before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 35px solid #0DA9D9;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+
+/*----------------- All Players final destination styles ---------------------*/
+.ludo-cell.final-destination {
+    -ms-grid-column: 7;
+    -ms-grid-column-span: 3;
+    grid-column: 7 / span 3;
+    -ms-grid-row: 7;
+    -ms-grid-row-span: 3;
+    grid-row: 7 / span 3;
+    position: relative;
+}
+
+.final-destination-cell {
+    position: absolute;;
+}
+.final-destination-cell:after {
+    height: 100%;
+    width: 100%;
+    content: '';
+    display: block;
+}
+.final-destination-cell.green-cell {
+    width: 100%;
+    height: 50%;
+    top: 0;
+    left: 0;
+}
+.final-destination-cell.green-cell:after {
+    background: #70dc39;
+    -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+.final-destination-cell.red-cell {
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.final-destination-cell.red-cell:after {
+    background: #e01818;
+    -webkit-clip-path: polygon(100% 50%, 0 100%, 0 0);
+            clip-path: polygon(100% 50%, 0 100%, 0 0);
+}
+.final-destination-cell.yellow-cell {
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+.final-destination-cell.yellow-cell:after {
+    background: #ffdf00;
+    -webkit-clip-path: polygon(0 50%, 100% 100%, 100% 0);
+            clip-path: polygon(0 50%, 100% 100%, 100% 0);
+}
+.final-destination-cell.blue-cell {
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+}
+.final-destination-cell.blue-cell:after {
+    background: #0da9d9;
+    -webkit-clip-path: polygon(50% 0, 0 100%, 100% 100%);
+            clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
